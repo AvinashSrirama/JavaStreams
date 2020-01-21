@@ -52,6 +52,9 @@ public class StreamOperations {
 			System.out.println(developer);
 		}
         memberNames.stream().sorted((l1,l2) -> (l1.charAt(l1.length() - 1)) - (l2.charAt(l2.length() - 1))).forEach(System.out::println);
+        
+        System.out.println("hjjjjjjj");
+        memberNames.stream().sorted(Comparator.comparing(i -> i.charAt(i.length()-1))).forEach(System.out::println);
 
 	}
 
