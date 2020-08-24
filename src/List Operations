@@ -1,0 +1,33 @@
+
+        //Max and Min in a list
+        List<Integer> numberList = Arrays.asList(1, 2, 1, 3, 4, 4);
+        int max = numberList.stream().max(Comparator.comparingInt(Integer::valueOf)).get();
+        int min = numberList.stream().min(Comparator.comparingInt(Integer::valueOf)).get();
+
+        //Sort list
+        List<String> list = Arrays.asList("9", "A", "Z", "1", "B", "Y", "4", "a", "c");
+        List<String> naturalOrderList = list.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
+        List<String> reverseOrderList = list.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+
+        List<String> stringList = Arrays.asList("Avinash","Srirama","Sunny","Ramya");
+        stringList.stream().sorted(Comparator.comparing(String::valueOf)).collect(Collectors.toList());
+
+        //To Find duplicates in a list
+        List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 4, 4);
+        Set<Integer> allItems = new HashSet<>();
+        Set<Integer> duplicates = numbers.stream()
+                .filter(n -> !allItems.add(n)) //Set.add() returns false if the item was already in the set.
+                .collect(Collectors.toSet());
+        System.out.println(duplicates); // [1, 4]
+
+        //Duplicates and how many times they appeared
+        ArrayList<Integer> numbersList  = new ArrayList<>(Arrays.asList(1, 1, 2, 3, 3, 3, 4, 5, 6, 6, 6, 7, 8, 6));
+        Map<Integer, Integer> elementCountMap = numbersList.stream()
+                .collect(Collectors.toMap(k -> k, v -> 1, Integer::sum));
+
+      Integer s = elementCountMap.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue)).get().getValue();
+
+        System.out.println(elementCountMap.entrySet().stream().filter(m -> m.getValue()==s).map(Map.Entry::getKey).collect(Collectors.toList()).stream().sorted(Comparator.comparing(Integer::valueOf,(s1, s2) -> {
+            return s2.compareTo(s1);
+        })).findFirst().get());
+        System.out.println(elementCountMap);
