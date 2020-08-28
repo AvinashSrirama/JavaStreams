@@ -1,3 +1,8 @@
+//To find Sum
+        List<Integer> integers = Arrays.asList(2, 3, 6, 5, 1);
+        integers.stream().mapToInt(Integer::intValue).sum();
+        integers.stream().collect(Collectors.summingInt(Integer::intValue));
+        Integer sum = integers.stream().reduce(0,Integer::sum);
 
         //Max and Min in a list
         List<Integer> numberList = Arrays.asList(1, 2, 1, 3, 4, 4);
